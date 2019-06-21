@@ -55,6 +55,7 @@ $date = $arr["forecasts"][0]["dateLabel"];
 $weather = $arr["forecasts"][0]["telop"];
 $tem_min = $arr["forecasts"][0]["temperature"]["min"];
 $tem_max = $arr["forecasts"][0]["temperature"]["max"];
+if(!isset($return_message_text))
 $return_message_text = "{$date}の天気は{$weather}です。最高気温は{$tem_max}、最低気温は{$tem_min}です。";
 
 //返信実行
