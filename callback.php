@@ -14,9 +14,38 @@ $message_text = $json_object->{"events"}[0]->{"message"}->{"text"};    //メッ�
 //メッセージタイプが「text」以外のときは何も返さず終了
 if($message_type != "text") exit;
  
-//返信メッセージ
-$return_message_text = "「" . $message_text . "」じゃねーよｗｗｗ";
+//地域IDを取得する
+if(preg_match($maebashi,$message_text)){
+    $areaID = $ID[0];
+} elseif (preg_match($chiba,$message_text)){
+    $areaID = $ID[1];
+} elseif (preg_match($tukoyou,$message_text)){
+    $areaID = $ID[2];
+} elseif (preg_match($hukuoka,$message_text)){
+    $areaID = $ID[3];
+} else {
+    $return_message_text = "「" . $message_text . "」じゃねーよｗｗｗ";
+}
+
+$url = "http://weather.livedoor.com/forecast/webservice/json/v1?city=$areaID";
+
+//cURLセッションを初期化する
+$ch = curl_init();
  
+//URLとオプションを指定する
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//URLの情報を取得する
+$res =  curl_exec($ch);
+ 
+$arr = json_decode($res,true);
+//結果を表示する
+$date = $arr["forecasts"][0]["dateLabel"];
+$weather = $arr["forecasts"][0]["telop"];
+$tem_min = $arr["forecasts"][0]["temperature"]["min"];
+$tem_max = $arr["forecasts"][0]["temperature"]["max"];
+$return_message_text = "{$date}の天気は{$weather}です。最高気温は{$tem_max}、最低気温は{$tem_min}です。";
+
 //返信実行
 sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
 ?>
@@ -48,3 +77,11 @@ function sending_messages($accessToken, $replyToken, $message_type, $return_mess
     $result = curl_exec($ch);
     curl_close($ch);
 }
+
+//地域ID 前橋,千葉,東京,福岡
+$ID = [100010,120010,130010,400010];
+$maebashi = "前橋の天気";
+$chiba = "千葉の天気";
+$toukyou = "東京の天気";
+$hukuoka = "福岡の天気";
+?>
