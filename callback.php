@@ -17,13 +17,13 @@ if($message_type != "text") exit;
 //地域IDを取得する
 $areaID = "";
 $return_message_text = "";
-if(preg_match($maebashi,$message_text)){
+if($maebashi == $message_text){
     $areaID = $ID[0];
-} elseif (preg_match($chiba,$message_text)){
+} elseif ($chiba == $message_text){
     $areaID = $ID[1];
-} elseif (preg_match($tukoyou,$message_text)){
+} elseif ($tukoyou == $message_text){
     $areaID = $ID[2];
-} elseif (preg_match($hukuoka,$message_text)){
+} elseif ($hukuoka == $message_text){
     $areaID = $ID[3];
 } else {
     $return_message_text = "「" . $message_text . "」じゃねーよｗｗｗ";
