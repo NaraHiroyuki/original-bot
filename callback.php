@@ -15,6 +15,8 @@ $message_text = $json_object->{"events"}[0]->{"message"}->{"text"};    //メッ�
 if($message_type != "text") exit;
  
 //地域IDを取得する
+$areaID = "";
+$return_message_text = "";
 if(preg_match($maebashi,$message_text)){
     $areaID = $ID[0];
 } elseif (preg_match($chiba,$message_text)){
@@ -35,10 +37,12 @@ $ch = curl_init();
 //URLとオプションを指定する
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
 //URLの情報を取得する
 $res =  curl_exec($ch);
  
 $arr = json_decode($res,true);
+
 //結果を表示する
 $date = $arr["forecasts"][0]["dateLabel"];
 $weather = $arr["forecasts"][0]["telop"];
@@ -50,8 +54,10 @@ $return_message_text = "{$date}の天気は{$weather}です。最高気温は{$t
 sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
 ?>
 <?php
+
 //メッセージの送信
 function sending_messages($accessToken, $replyToken, $message_type, $return_message_text){
+    
     //レスポンスフォーマット
     $response_format_text = [
         "type" => $message_type,
