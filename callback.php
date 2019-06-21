@@ -14,6 +14,13 @@ $message_text = $json_object->{"events"}[0]->{"message"}->{"text"};    //メッ�
 //メッセージタイプが「text」以外のときは何も返さず終了
 if($message_type != "text") exit;
  
+//地域ID 前橋,千葉,東京,福岡
+$ID = [100010,120010,130010,400010];
+$maebashi = "前橋の天気";
+$chiba = "千葉の天気";
+$toukyou = "東京の天気";
+$hukuoka = "福岡の天気";
+
 //地域IDを取得する
 $areaID = "";
 $return_message_text = "";
@@ -84,10 +91,4 @@ function sending_messages($accessToken, $replyToken, $message_type, $return_mess
     curl_close($ch);
 }
 
-//地域ID 前橋,千葉,東京,福岡
-$ID = [100010,120010,130010,400010];
-$maebashi = "前橋の天気";
-$chiba = "千葉の天気";
-$toukyou = "東京の天気";
-$hukuoka = "福岡の天気";
 ?>
