@@ -56,14 +56,14 @@ $weather = $arr["forecasts"][0]["telop"];
 $tem_min = $arr["forecasts"][0]["temperature"]["min"]["celsius"];
 $tem_max = $arr["forecasts"][0]["temperature"]["max"]["celsius"];
 if(!empty($areaID)){
-  $return_message_text = "{$date}の天気は{$weather}です。";
+  $return_message_text = "{$date}の天気は{$weather}です☀️";
   if (!empty($tem_min)) {
     // 入っている処理
-    $return_message_text .= "最低気温は{$tem_min}です。";
+    $return_message_text .= "最低気温は{$tem_min}度です";
   }
   if (!empty($tem_max)) {
     // 入っている処理
-    $return_message_text .= "最高気温は{$tem_max}です。";
+    $return_message_text .= "最高気温は{$tem_max}度です";
   }
 }
 //返信実行
