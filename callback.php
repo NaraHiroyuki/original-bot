@@ -53,11 +53,19 @@ $arr = json_decode($res,true);
 //結果を表示する
 $date = $arr["forecasts"][0]["dateLabel"];
 $weather = $arr["forecasts"][0]["telop"];
-$tem_min = $arr["forecasts"][0]["temperature"]["min"];
-$tem_max = $arr["forecasts"][0]["temperature"]["max"];
-if(empty($return_message_text))
-$return_message_text = "{$date}の天気は{$weather}です。最高気温は{$tem_max}、最低気温は{$tem_min}です。";
-
+$tem_min = $arr["forecasts"][0]["temperature"]["min"]["celsius"];
+$tem_max = $arr["forecasts"][0]["temperature"]["max"]["celsius"];
+if(!empty($areaID)){
+  $return_message_text = "{$date}の天気は{$weather}です。";
+  if (!empty($tem_min)) {
+    // 入っている処理
+    $return_message_text .= "最低気温は{$tem_min}です。";
+  }
+  if (!empty($tem_min)) {
+    // 入っている処理
+    $return_message_text .= "最高気温は{$tem_max}です。";
+  }
+}
 //返信実行
 sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
 ?>
