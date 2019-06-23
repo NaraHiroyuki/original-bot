@@ -56,7 +56,18 @@ $weather = $arr["forecasts"][0]["telop"];
 $tem_min = $arr["forecasts"][0]["temperature"]["min"]["celsius"];
 $tem_max = $arr["forecasts"][0]["temperature"]["max"]["celsius"];
 if(!empty($areaID)){
-  $return_message_text = "{$date}の天気は{$weather}です☀️";
+  $return_message_text = "{$date}の天気は{$weather}です";
+  if($weather == "晴れ"){
+      $return_message_text .= "☀️";
+  } elseif ($weather == "晴時々曇"){
+      $return_message_text .= "🌤";
+  } elseif ($weather == "曇り"){
+      $return_message_text .= "☁️";
+  } elseif ($weather == "雨"){
+      $return_message_text .= "☔️";
+  } else {
+      $return_message_text .= "。";
+  }
   if (!empty($tem_min)) {
     // 入っている処理
     $return_message_text .= "最低気温は{$tem_min}度です";
