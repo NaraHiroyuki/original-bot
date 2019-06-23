@@ -61,7 +61,7 @@ if(!empty($areaID)){
     // 入っている処理
     $return_message_text .= "最低気温は{$tem_min}です。";
   }
-  if (!empty($tem_min)) {
+  if (!empty($tem_max)) {
     // 入っている処理
     $return_message_text .= "最高気温は{$tem_max}です。";
   }
