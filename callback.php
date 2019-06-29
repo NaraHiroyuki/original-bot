@@ -51,8 +51,7 @@ $ID = [
 
 //地域IDを取得する
 $return_message_text = "こんにちは!";
-$message = (string)$message_text;
-$areaID = $ID[$message];
+$areaID = $ID[$message_text];
 if(empty($areaID)){
     $return_message_text .= "地域名を送信するとその地域の天気情報を返信します。";
     $return_message_text .= "調べられる地域は北見、札幌、盛岡、仙台、秋田、福島、前橋、千葉、東京、横浜、新潟、金沢、長野、岐阜、静岡、名古屋、京都、大阪、神戸、奈良、和歌山、鳥取、広島、松山、高知、福岡、長崎、熊本、宮崎、鹿児島、那覇です";
@@ -73,7 +72,6 @@ $res =  curl_exec($ch);
 $arr = json_decode($res,true);
 
 //結果を表示する
-
 $today = $arr["forecasts"][0]["dateLabel"];
 $weather = $arr["forecasts"][0]["telop"];
 $tem_min = $arr["forecasts"][0]["temperature"]["min"]["celsius"];
@@ -90,7 +88,11 @@ $af_tem_min = $arr["forecasts"][2]["temperature"]["min"]["celsius"];
 $af_tem_max = $arr["forecasts"][2]["temperature"]["max"]["celsius"];
 
 if(!empty($areaID)){
-    $return_message_text .= "{$today}の天気は{$weather}です";
+    if (!empty($today) || !empty($weather)){
+        $return_message_text .= "{$today}の天気は{$weather}です";
+    } else {
+        $return_message_text .= "申し訳ありません。現在この地域の天気情報を取得できません🙇‍♂️";
+    }
     if($weather == "晴れ"){
         $return_message_text .= "☀️";
     } elseif ($weather == "晴時々曇"){
