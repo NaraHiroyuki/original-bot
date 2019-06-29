@@ -51,7 +51,8 @@ $ID = [
 
 //地域IDを取得する
 $return_message_text = "こんにちは!";
-$areaID = $ID[$message_text];
+$message = (string)$message_text;
+$areaID = $ID[$message];
 if(empty($areaID)){
     $return_message_text .= "地域名を送信するとその地域の天気情報を返信します。";
     $return_message_text .= "調べられる地域は北見、札幌、盛岡、仙台、秋田、福島、前橋、千葉、東京、横浜、新潟、金沢、長野、岐阜、静岡、名古屋、京都、大阪、神戸、奈良、和歌山、鳥取、広島、松山、高知、福岡、長崎、熊本、宮崎、鹿児島、那覇です";
