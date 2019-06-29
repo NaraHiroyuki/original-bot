@@ -96,7 +96,9 @@ if(!empty($areaID)){
         $return_message_text .= "🌤";
     } elseif ($weather == "曇時々雨"){
         $return_message_text .= "🌨";
-    } elseif ($weather == "曇り"){
+    }elseif ($weather == "曇のち雨"){
+        $return_message_text .= "☁️→☂️";
+    }elseif ($weather == "曇り"){
         $return_message_text .= "☁️";
     } elseif ($weather == "雨"){
         $return_message_text .= "☔️";
