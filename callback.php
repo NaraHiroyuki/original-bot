@@ -48,18 +48,14 @@ $ID = [
     "鹿児島" => 460010,
     "那覇" => 471010,
 ];
-$maebashi = "前橋の天気";
-$chiba = "千葉の天気";
-$toukyou = "東京の天気";
-$hukuoka = "福岡の天気";
-
 
 //地域IDを取得する
 $areaID = "";
 $return_message_text = "";
 $areaID = $ID[$message_text];
 if(empty($areaID)){
-    $return_message_text = "「".$message_text."」"."じゃねーよ！";
+    $return_message_text = "地域名を送信するとその地域の天気情報を返信します。";
+    $return_message_text .= "調べられる地域は北見、札幌、盛岡、仙台、秋田、福島、前橋、千葉、東京、横浜、新潟、金沢、長野、岐阜、静岡、名古屋、京都、大阪、神戸、奈良、和歌山、鳥取、広島、松山、高知、福岡、長崎、熊本、宮崎、鹿児島、那覇です";
 }
 
 $url = "http://weather.livedoor.com/forecast/webservice/json/v1?city=$areaID";
