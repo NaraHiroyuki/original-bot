@@ -14,26 +14,52 @@ $message_text = $json_object->{"events"}[0]->{"message"}->{"text"};    //メッ�
 //メッセージタイプが「text」以外のときは何も返さず終了
 if($message_type != "text") exit;
  
-//地域ID 前橋,千葉,東京,福岡
-$ID = [100010,120010,130010,400010];
+//地域ID 北見、札幌、盛岡、仙台、秋田、福島、前橋、千葉、東京、横浜、新潟、金沢、長野、岐阜、静岡、名古屋、京都、大阪、神戸、奈良、和歌山、鳥取、広島、松山、高知、福岡、長崎、熊本、宮崎、鹿児島、那覇のID
+$ID = [
+    "北見" => 013020, 
+    "札幌" => 016010,
+    "盛岡" => 030010,
+    "仙台" => 040010,
+    "秋田" => 050010,
+    "福島" => 070010,
+    "前橋" => 100010,
+    "千葉" => 120010,
+    "東京" => 130010,
+    "横浜" => 140010,
+    "新潟" => 150010,
+    "金沢" => 170010,
+    "長野" => 200010,
+    "岐阜" => 210010,
+    "静岡" => 220010,
+    "名古屋" => 230010,
+    "京都" => 260010,
+    "大阪" => 270000,
+    "神戸" => 280010,
+    "奈良" => 290010,
+    "和歌山" => 300010,
+    "鳥取" => 310010,
+    "広島" => 340010,
+    "松山" => 380010,
+    "高知" => 390010,
+    "福岡" => 400010,   
+    "長崎" => 420010,
+    "熊本" => 430010,
+    "宮崎" => 450010,
+    "鹿児島" => 460010,
+    "那覇" => 471010,
+];
 $maebashi = "前橋の天気";
 $chiba = "千葉の天気";
 $toukyou = "東京の天気";
 $hukuoka = "福岡の天気";
 
+
 //地域IDを取得する
 $areaID = "";
 $return_message_text = "";
-if($maebashi == $message_text){
-    $areaID = $ID[0];
-} elseif ($chiba == $message_text){
-    $areaID = $ID[1];
-} elseif ($tukoyou == $message_text){
-    $areaID = $ID[2];
-} elseif ($hukuoka == $message_text){
-    $areaID = $ID[3];
-} else {
-    $return_message_text = "「" . $message_text . "」じゃねーよｗｗｗ";
+$areaID = $ID[$message_text];
+if(empty($areaID)){
+    $return_message_text = "「".$message_text."」"."じゃねーよ！";
 }
 
 $url = "http://weather.livedoor.com/forecast/webservice/json/v1?city=$areaID";
@@ -51,16 +77,29 @@ $res =  curl_exec($ch);
 $arr = json_decode($res,true);
 
 //結果を表示する
-$date = $arr["forecasts"][0]["dateLabel"];
+$today = $arr["forecasts"][0]["dateLabel"];
 $weather = $arr["forecasts"][0]["telop"];
 $tem_min = $arr["forecasts"][0]["temperature"]["min"]["celsius"];
 $tem_max = $arr["forecasts"][0]["temperature"]["max"]["celsius"];
+
+$tomorrow = $arr["forecasts"][1]["dateLabel"];
+$to_weather = $arr["forecasts"][1]["telop"];
+$to_tem_min = $arr["forecasts"][1]["temperature"]["min"]["celsius"];
+$to_tem_max = $arr["forecasts"][1]["temperature"]["max"]["celsius"];
+
+$day_after_tomorrow = $arr["forecasts"][2]["dateLabel"];
+$af_weather = $arr["forecasts"][2]["telop"];
+$af_to_tem_min = $arr["forecasts"][2]["temperature"]["min"]["celsius"];
+$af_to_tem_max = $arr["forecasts"][2]["temperature"]["max"]["celsius"];
+
 if(!empty($areaID)){
-  $return_message_text = "{$date}の天気は{$weather}です";
+  $return_message_text = "{$today}の天気は{$weather}です";
   if($weather == "晴れ"){
       $return_message_text .= "☀️";
   } elseif ($weather == "晴時々曇"){
       $return_message_text .= "🌤";
+  } elseif ($weather == "曇時々雨"){
+      $return_message_text .= "🌨";
   } elseif ($weather == "曇り"){
       $return_message_text .= "☁️";
   } elseif ($weather == "雨"){
@@ -77,6 +116,7 @@ if(!empty($areaID)){
     $return_message_text .= "最高気温は{$tem_max}度です";
   }
 }
+
 //返信実行
 sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
 ?>
