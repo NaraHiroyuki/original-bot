@@ -88,6 +88,7 @@ $af_tem_min = $arr["forecasts"][2]["temperature"]["min"]["celsius"];
 $af_tem_max = $arr["forecasts"][2]["temperature"]["max"]["celsius"];
 
 if(!empty($areaID)){
+    // 今日の情報
     if (!empty($today) || !empty($weather)){
         $return_message_text .= "{$today}の天気は{$weather}です";
     } else {
@@ -116,7 +117,62 @@ if(!empty($areaID)){
       // 入っている処理
       $return_message_text .= "最高気温は{$tem_max}度です";
     }
-  }
+    
+    // 明日の情報
+    if(empty($today) || empty($weather)){
+        $return_message_text .= "{$tomorrow}の天気は{$to_weather}です";
+        if($to_weather == "晴れ"){
+            $return_message_text .= "☀️";
+        } elseif ($to_weather == "晴時々曇"){
+            $return_message_text .= "🌤";
+        } elseif ($to_weather == "曇時々雨"){
+            $return_message_text .= "🌨";
+        }elseif ($to_weather == "曇のち雨"){
+            $return_message_text .= "☁️→☂️";
+        }elseif ($to_weather == "曇り"){
+            $return_message_text .= "☁️";
+        } elseif ($to_weather == "雨"){
+            $return_message_text .= "☔️";
+        } else {
+            $return_message_text .= "。";
+        }
+        if (!empty($to_tem_min)) {
+            // 入っている処理
+            $return_message_text .= "最低気温は{$to_tem_min}度です";
+        }
+        if (!empty($to_tem_max)) {
+            // 入っている処理
+            $return_message_text .= "最高気温は{$to_tem_max}度です";
+        }
+    }
+    //  明後日の情報
+    if(empty($today) || empty($weather)){
+        $return_message_text .= "{$day_after_tomorrow}の天気は{$af_weather}です";
+        if($af_weather == "晴れ"){
+            $return_message_text .= "☀️";
+        } elseif ($af_weather == "晴時々曇"){
+            $return_message_text .= "🌤";
+        } elseif ($af_weather == "曇時々雨"){
+            $return_message_text .= "🌨";
+        }elseif ($af_weather == "曇のち雨"){
+            $return_message_text .= "☁️→☂️";
+        }elseif ($af_weather == "曇り"){
+            $return_message_text .= "☁️";
+        } elseif ($af_weather == "雨"){
+            $return_message_text .= "☔️";
+        } else {
+            $return_message_text .= "。";
+        }
+        if (!empty($af_tem_min)) {
+            // 入っている処理
+            $return_message_text .= "最低気温は{$af_tem_min}度です";
+        }
+        if (!empty($af_tem_max)) {
+            // 入っている処理
+            $return_message_text .= "最高気温は{$af_tem_max}度です";
+        }
+    }
+}
 
 //返信実行
 sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
