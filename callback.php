@@ -89,7 +89,7 @@ $af_tem_min = $arr["forecasts"][2]["temperature"]["min"]["celsius"];
 $af_tem_max = $arr["forecasts"][2]["temperature"]["max"]["celsius"];
 
 if(!empty($areaID)){
-    $return_message_text = "{$today}の天気は{$weather}です";
+    $return_message_text .= "{$today}の天気は{$weather}です";
     if($weather == "晴れ"){
         $return_message_text .= "☀️";
     } elseif ($weather == "晴時々曇"){
