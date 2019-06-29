@@ -87,6 +87,10 @@ $af_weather = $arr["forecasts"][2]["telop"];
 $af_tem_min = $arr["forecasts"][2]["temperature"]["min"]["celsius"];
 $af_tem_max = $arr["forecasts"][2]["temperature"]["max"]["celsius"];
 
+$today_info = "";
+$tomorrow_info = "";
+$day_after_tomorrow_info = "";
+
 $date_info = [$today,$tomorrow,$day_after_tomorrow];
 $weather_info = [$weather,$to_weather,$af_weather];
 $tem_min_info = [$tem_min,$to_tem_min,$af_tem_min];
@@ -95,7 +99,7 @@ $information = [$today_info,$tomorrow_info,$day_after_tomorrow_info];
 $length = count($information);
 if(!empty($areaID)){
     for ($i=0;$i<$length;$i++){
-        $information[$i] = "{$date[$i]}の天気は{$weather_info[$i]}です";
+        $information[$i] = "{$date_info[$i]}の天気は{$weather_info[$i]}です";
         if($weather_info[$i] == "晴れ"){
             $information[$i] .= "☀️";
         } elseif ($weather_info[$i] == "晴時々曇"){
