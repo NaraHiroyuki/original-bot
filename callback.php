@@ -72,12 +72,6 @@ $res =  curl_exec($ch);
 $arr = json_decode($res,true);
 
 //結果を表示する
-$date_info = [$today,$tomorrow,$day_after_tomorrow];
-$weather_info = [$weather,$to_weather,$af_weather];
-$tem_min_info = [$tem_min,$to_tem_min,$af_tem_min];
-$tem_max_info = [$tem_max,$to_tem_max,$af_tem_max];
-$information = [$today_info,$tomorrow_info,$day_after_tomorrow_info];
-$length = count($information);
 
 $today = $arr["forecasts"][0]["dateLabel"];
 $weather = $arr["forecasts"][0]["telop"];
@@ -95,34 +89,29 @@ $af_tem_min = $arr["forecasts"][2]["temperature"]["min"]["celsius"];
 $af_tem_max = $arr["forecasts"][2]["temperature"]["max"]["celsius"];
 
 if(!empty($areaID)){
-    for ($i=0;$i<$length;$i++){
-        $information[$i] = "{$date_info[$i]}の天気は{$weather_info[$i]}です";
-        if($weather_info[$i] == "晴れ"){
-            $information[$i] .= "☀️";
-        } elseif ($weather_info[$i] == "晴時々曇"){
-            $information[$i] .= "🌤";
-        } elseif ($weather_info[$i] == "曇時々雨"){
-            $information[$i] .= "🌨";
-        } elseif ($weather_info[$i] == "曇り"){
-            $information[$i] .= "☁️";
-        } elseif ($weather_info[$i]== "雨"){
-            $information[$i] .= "☔️";
-        } else {
-            $information[$i] .= "。";
-        }
-        if (!empty($tem_min_info[$i])) {
-          // 入っている処理
-          $information[$i] .= "最低気温は{$tem_min_info[$i]}度です";
-        }
-        if (!empty($tem_max_info[$i])) {
-          // 入っている処理
-          $information[$i] .= "最高気温は{$tem_max_info[$i]}度です";
-        }
+    $return_message_text = "{$today}の天気は{$weather}です";
+    if($weather == "晴れ"){
+        $return_message_text .= "☀️";
+    } elseif ($weather == "晴時々曇"){
+        $return_message_text .= "🌤";
+    } elseif ($weather == "曇時々雨"){
+        $return_message_text .= "🌨";
+    } elseif ($weather == "曇り"){
+        $return_message_text .= "☁️";
+    } elseif ($weather == "雨"){
+        $return_message_text .= "☔️";
+    } else {
+        $return_message_text .= "。";
     }
-    for($i=0;$i<$length;$i++){
-        $return_message_text .= $information[$i];
+    if (!empty($tem_min)) {
+      // 入っている処理
+      $return_message_text .= "最低気温は{$tem_min}度です";
     }
-}
+    if (!empty($tem_max)) {
+      // 入っている処理
+      $return_message_text .= "最高気温は{$tem_max}度です";
+    }
+  }
 
 //返信実行
 sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
