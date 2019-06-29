@@ -91,7 +91,7 @@ if(!empty($areaID)){
     if (!empty($today) || !empty($weather)){
         $return_message_text .= "{$today}の天気は{$weather}です";
     } else {
-        $return_message_text .= "申し訳ありません。現在この地域の天気情報を取得できません🙇‍♂️";
+        $return_message_text .= "申し訳ありません。現在この地域の天気情報を取得できません🙇‍";
     }
     if($weather == "晴れ"){
         $return_message_text .= "☀️";
