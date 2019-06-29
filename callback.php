@@ -1,7 +1,7 @@
 <?php
  
 $accessToken = 'UqaD6EQOTUlLPtAnbn3BRaIOgV0+UJIAnzRCSV7vVNOB9222WnNDpY8zYGwSGufm/hNTz+XlgyteKUfNhNl9PJQcxADRxqKd4laB+Tp9PR385lPYM1malypo9aadrOAVznQUMmzlYrmWYYfwfALRLAdB04t89/1O/w1cDnyilFU=';
- 
+require_once("/Users/narahiroyuki/workspace/original-bot/ID.php");
 //ユーザーからのメッセージ取得
 $json_string = file_get_contents('php://input');
 $json_object = json_decode($json_string);
@@ -13,41 +13,6 @@ $message_text = $json_object->{"events"}[0]->{"message"}->{"text"};    //メッ�
  
 //メッセージタイプが「text」以外のときは何も返さず終了
 if($message_type != "text") exit;
- 
-//地域ID 北見、札幌、盛岡、仙台、秋田、福島、前橋、千葉、東京、横浜、新潟、金沢、長野、岐阜、静岡、名古屋、京都、大阪、神戸、奈良、和歌山、鳥取、広島、松山、高知、福岡、長崎、熊本、宮崎、鹿児島、那覇のID
-$ID = [
-    "北見" => 013020, 
-    "札幌" => 016010,
-    "盛岡" => 030010,
-    "仙台" => 040010,
-    "秋田" => 050010,
-    "福島" => 070010,
-    "前橋" => 100010,
-    "千葉" => 120010,
-    "東京" => 130010,
-    "横浜" => 140010,
-    "新潟" => 150010,
-    "金沢" => 170010,
-    "長野" => 200010,
-    "岐阜" => 210010,
-    "静岡" => 220010,
-    "名古屋" => 230010,
-    "京都" => 260010,
-    "大阪" => 270000,
-    "神戸" => 280010,
-    "奈良" => 290010,
-    "和歌山" => 300010,
-    "鳥取" => 310010,
-    "広島" => 340010,
-    "松山" => 380010,
-    "高知" => 390010,
-    "福岡" => 400010,   
-    "長崎" => 420010,
-    "熊本" => 430010,
-    "宮崎" => 450010,
-    "鹿児島" => 460010,
-    "那覇" => 471010,
-];
 
 //地域IDを取得する
 $return_message_text = "こんにちは!";
@@ -228,8 +193,29 @@ if(!empty($areaID)){
     }
 }
 
+// カルーセルを作る
+if($message_text == "カルーセル"){
+    $messageData = [
+        "type" => "template",
+        "altText" => "カルーセル",
+        "template" => [
+            "type" => "carousel",
+            "columns" => [
+                "title" => "福岡の観光",
+                "text" => "福岡の観光情報です",
+                "actions" => [
+                    "type" => "uri",
+                    "label" => "福岡の観光情報をGoogleで調べる",
+                    "uri" => "https://www.google.com/search?q=%E7%A6%8F%E5%B2%A1+%E8%A6%B3%E5%85%89&rlz=1C5CHFA_enJP839JP839&oq=%E7%A6%8F%E5%B2%A1%E3%80%80%E8%A6%B3%E5%85%89&aqs=chrome..69i57j35i39j0l4.3609j0j8&sourceid=chrome&ie=UTF-8"
+                ]
+            ]
+        ]
+     ];
+}
+
 //返信実行
 sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
+sending_carousel($accessToken, $replyToken, $message_type);
 ?>
 <?php
 
@@ -262,4 +248,28 @@ function sending_messages($accessToken, $replyToken, $message_type, $return_mess
     curl_close($ch);
 }
 
+//カルーセルの送信
+function sending_carousel($accessToken, $replyToken){
+    //レスポンスフォーマット
+    $response_format_text = $messageData;
+ 
+    //ポストデータ
+    $post_data = [
+        "replyToken" => $replyToken,
+        "messages" => [$response_format_text]
+    ];
+ 
+    //curl実行
+    $ch = curl_init("https://api.line.me/v2/bot/message/reply");
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post_data));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json; charser=UTF-8',
+        'Authorization: Bearer ' . $accessToken
+    ));
+    $result = curl_exec($ch);
+    curl_close($ch);
+}
 ?>
