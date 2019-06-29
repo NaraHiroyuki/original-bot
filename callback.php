@@ -72,6 +72,13 @@ $res =  curl_exec($ch);
 $arr = json_decode($res,true);
 
 //結果を表示する
+$date_info = [$today,$tomorrow,$day_after_tomorrow];
+$weather_info = [$weather,$to_weather,$af_weather];
+$tem_min_info = [$tem_min,$to_tem_min,$af_tem_min];
+$tem_max_info = [$tem_max,$to_tem_max,$af_tem_max];
+$information = [$today_info,$tomorrow_info,$day_after_tomorrow_info];
+$length = count($information);
+
 $today = $arr["forecasts"][0]["dateLabel"];
 $weather = $arr["forecasts"][0]["telop"];
 $tem_min = $arr["forecasts"][0]["temperature"]["min"]["celsius"];
@@ -87,16 +94,6 @@ $af_weather = $arr["forecasts"][2]["telop"];
 $af_tem_min = $arr["forecasts"][2]["temperature"]["min"]["celsius"];
 $af_tem_max = $arr["forecasts"][2]["temperature"]["max"]["celsius"];
 
-$today_info = "";
-$tomorrow_info = "";
-$day_after_tomorrow_info = "";
-
-$date_info = [$today,$tomorrow,$day_after_tomorrow];
-$weather_info = [$weather,$to_weather,$af_weather];
-$tem_min_info = [$tem_min,$to_tem_min,$af_tem_min];
-$tem_max_info = [$tem_max,$to_tem_max,$af_tem_max];
-$information = [$today_info,$tomorrow_info,$day_after_tomorrow_info];
-$length = count($information);
 if(!empty($areaID)){
     for ($i=0;$i<$length;$i++){
         $information[$i] = "{$date_info[$i]}の天気は{$weather_info[$i]}です";
