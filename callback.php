@@ -1,6 +1,6 @@
 <?php
  
-$accessToken = 'UqaD6EQOTUlLPtAnbn3BRaIOgV0+UJIAnzRCSV7vVNOB9222WnNDpY8zYGwSGufm/hNTz+XlgyteKUfNhNl9PJQcxADRxqKd4laB+Tp9PR385lPYM1malypo9aadrOAVznQUMmzlYrmWYYfwfALRLAdB04t89/1O/w1cDnyilFU=';
+$accessToken = 'Ak437zeTmxtWY3WLe6hMgOm++kaItQngv2RiKgwqPhb2B88FkStdcbMh55WhuRmf/hNTz+XlgyteKUfNhNl9PJQcxADRxqKd4laB+Tp9PR0s2vajpKF0ixE7eDx7sG+tdlnj+08JG0L5Pik94FVATAdB04t89/1O/w1cDnyilFU=';
 require_once("/Users/narahiroyuki/workspace/original-bot/ID.php");
 //ユーザーからのメッセージ取得
 $json_string = file_get_contents('php://input');
@@ -229,5 +229,4 @@ function sending_messages($accessToken, $replyToken, $message_type, $return_mess
     $result = curl_exec($ch);
     curl_close($ch);
 }
-
 ?>
