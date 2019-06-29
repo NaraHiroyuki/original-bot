@@ -111,7 +111,7 @@ if(!empty($areaID)){
     }
     if (!empty($tem_min)) {
       // 入っている処理
-      $return_message_text .= "\n"."最低気温は{$tem_min}度です。";
+      $return_message_text .= "最低気温は{$tem_min}度です。";
     }
     if (!empty($tem_max)) {
       // 入っている処理
@@ -120,7 +120,7 @@ if(!empty($areaID)){
     
     // 明日の情報
     if(!empty($today) || !empty($weather)){
-        $return_message_text .= "{$tomorrow}の天気は{$to_weather}です";
+        $return_message_text .= "\n"."{$tomorrow}の天気は{$to_weather}です";
         if($to_weather == "晴れ"){
             $return_message_text .= "☀️";
         } elseif ($to_weather == "晴時々曇"){
