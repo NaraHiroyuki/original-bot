@@ -112,10 +112,28 @@ if(!empty($areaID)){
     if (!empty($tem_min)) {
       // 入っている処理
       $return_message_text .= "\n"."最低気温は{$tem_min}度です。";
+      if($tem_min < 0){
+        $return_message_text .= "❄️";
+    } elseif($tem_min >= 25){
+        $return_message_text .= "😳";
+    } elseif($tem_min >= 30){
+        $return_message_text .= "😡";
+    } elseif($tem_min >= 35){
+        $return_message_text .= "🔥";
+    }
     }
     if (!empty($tem_max)) {
       // 入っている処理
       $return_message_text .= "\n"."最高気温は{$tem_max}度です。";
+      if($tem_max < 0){
+        $return_message_text .= "❄️";
+    } elseif($tem_max >= 25){
+        $return_message_text .= "😳";
+    } elseif($tem_max >= 30){
+        $return_message_text .= "😡";
+    } elseif($tem_max >= 35){
+        $return_message_text .= "🔥";
+    }
     }
     
     // 明日の情報
@@ -139,10 +157,28 @@ if(!empty($areaID)){
         if (!empty($to_tem_min)) {
             // 入っている処理
             $return_message_text .= "\n"."最低気温は{$to_tem_min}度です。";
+            if($to_tem_min < 0){
+                $return_message_text .= "❄️";
+            } elseif($to_tem_min >= 25){
+                $return_message_text .= "😳";
+            } elseif($to_tem_min >= 30){
+                $return_message_text .= "😡";
+            } elseif($to_tem_min >= 35){
+                $return_message_text .= "🔥";
+            }
         }
         if (!empty($to_tem_max)) {
             // 入っている処理
             $return_message_text .= "\n"."最高気温は{$to_tem_max}度です。";
+            if($to_tem_max < 0){
+                $return_message_text .= "❄️";
+            } elseif($to_tem_max >= 25){
+                $return_message_text .= "😳";
+            } elseif($to_tem_max >= 30){
+                $return_message_text .= "😡";
+            } elseif($to_tem_max >= 35){
+                $return_message_text .= "🔥";
+            }
         }
     }
     //  明後日の情報
@@ -153,7 +189,7 @@ if(!empty($areaID)){
         } elseif ($af_weather == "晴時々曇"){
             $return_message_text .= "🌤";
         } elseif ($af_weather == "曇時々雨"){
-            $return_message_text .= "🌨";
+            $return_message_text .= "☁️🌧";
         }elseif ($af_weather == "曇のち雨"){
             $return_message_text .= "☁️→☂️";
         }elseif ($af_weather == "曇り"){
@@ -166,10 +202,28 @@ if(!empty($areaID)){
         if (!empty($af_tem_min)) {
             // 入っている処理
             $return_message_text .= "\n"."最低気温は{$af_tem_min}度です。";
+            if($af_tem_min < 0){
+                $return_message_text .= "❄️";
+            } elseif($af_tem_min >= 25){
+                $return_message_text .= "😳";
+            } elseif($af_tem_min >= 30){
+                $return_message_text .= "😡";
+            } elseif($af_tem_min >= 35){
+                $return_message_text .= "🔥";
+            }
         }
         if (!empty($af_tem_max)) {
             // 入っている処理
             $return_message_text .= "\n"."最高気温は{$af_tem_max}度です。";
+            if($af_tem_max < 0){
+                $return_message_text .= "❄️";
+            } elseif($af_tem_max >= 25){
+                $return_message_text .= "😳";
+            } elseif($af_tem_max >= 30){
+                $return_message_text .= "😡";
+            } elseif($af_tem_max >= 35){
+                $return_message_text .= "🔥";
+            }
         }
     }
 }
