@@ -119,7 +119,7 @@ if(!empty($areaID)){
     }
     
     // 明日の情報
-    if(empty($today) || empty($weather)){
+    if(!empty($today) || !empty($weather)){
         $return_message_text .= "{$tomorrow}の天気は{$to_weather}です";
         if($to_weather == "晴れ"){
             $return_message_text .= "☀️";
@@ -146,7 +146,7 @@ if(!empty($areaID)){
         }
     }
     //  明後日の情報
-    if(empty($today) || empty($weather)){
+    if(!empty($today) || !empty($weather)){
         $return_message_text .= "{$day_after_tomorrow}の天気は{$af_weather}です";
         if($af_weather == "晴れ"){
             $return_message_text .= "☀️";
