@@ -111,11 +111,11 @@ if(!empty($areaID)){
     }
     if (!empty($tem_min)) {
       // 入っている処理
-      $return_message_text .= "最低気温は{$tem_min}度です。";
+      $return_message_text .= "\n"."最低気温は{$tem_min}度です。";
     }
     if (!empty($tem_max)) {
       // 入っている処理
-      $return_message_text .= "最高気温は{$tem_max}度です。";
+      $return_message_text .= "\n"."最高気温は{$tem_max}度です。";
     }
     
     // 明日の情報
@@ -138,16 +138,16 @@ if(!empty($areaID)){
         }
         if (!empty($to_tem_min)) {
             // 入っている処理
-            $return_message_text .= "最低気温は{$to_tem_min}度です。";
+            $return_message_text .= "\n"."最低気温は{$to_tem_min}度です。";
         }
         if (!empty($to_tem_max)) {
             // 入っている処理
-            $return_message_text .= "最高気温は{$to_tem_max}度です。";
+            $return_message_text .= "\n"."最高気温は{$to_tem_max}度です。";
         }
     }
     //  明後日の情報
     if(!empty($today) || !empty($weather)){
-        $return_message_text .= "{$day_after_tomorrow}の天気は{$af_weather}です";
+        $return_message_text .= "\n"."{$day_after_tomorrow}の天気は{$af_weather}です";
         if($af_weather == "晴れ"){
             $return_message_text .= "☀️";
         } elseif ($af_weather == "晴時々曇"){
@@ -165,11 +165,11 @@ if(!empty($areaID)){
         }
         if (!empty($af_tem_min)) {
             // 入っている処理
-            $return_message_text .= "最低気温は{$af_tem_min}度です。";
+            $return_message_text .= "\n"."最低気温は{$af_tem_min}度です。";
         }
         if (!empty($af_tem_max)) {
             // 入っている処理
-            $return_message_text .= "最高気温は{$af_tem_max}度です。";
+            $return_message_text .= "\n"."最高気温は{$af_tem_max}度です。";
         }
     }
 }
