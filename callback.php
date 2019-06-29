@@ -193,29 +193,11 @@ if(!empty($areaID)){
     }
 }
 
-// カルーセルを作る
-if($message_text == "カルーセル"){
-    $messageData = [
-        "type" => "template",
-        "altText" => "カルーセル",
-        "template" => [
-            "type" => "carousel",
-            "columns" => [
-                "title" => "福岡の観光",
-                "text" => "福岡の観光情報です",
-                "actions" => [
-                    "type" => "uri",
-                    "label" => "福岡の観光情報をGoogleで調べる",
-                    "uri" => "https://www.google.com/search?q=%E7%A6%8F%E5%B2%A1+%E8%A6%B3%E5%85%89&rlz=1C5CHFA_enJP839JP839&oq=%E7%A6%8F%E5%B2%A1%E3%80%80%E8%A6%B3%E5%85%89&aqs=chrome..69i57j35i39j0l4.3609j0j8&sourceid=chrome&ie=UTF-8"
-                ]
-            ]
-        ]
-     ];
-}
+
 
 //返信実行
 sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
-sending_carousel($accessToken, $replyToken, $message_type);
+
 ?>
 <?php
 
@@ -248,28 +230,4 @@ function sending_messages($accessToken, $replyToken, $message_type, $return_mess
     curl_close($ch);
 }
 
-//カルーセルの送信
-function sending_carousel($accessToken, $replyToken){
-    //レスポンスフォーマット
-    $response_format_text = $messageData;
- 
-    //ポストデータ
-    $post_data = [
-        "replyToken" => $replyToken,
-        "messages" => [$response_format_text]
-    ];
- 
-    //curl実行
-    $ch = curl_init("https://api.line.me/v2/bot/message/reply");
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post_data));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'Content-Type: application/json; charser=UTF-8',
-        'Authorization: Bearer ' . $accessToken
-    ));
-    $result = curl_exec($ch);
-    curl_close($ch);
-}
 ?>
