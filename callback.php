@@ -203,8 +203,8 @@ if($message_text == "福岡県"){
              'type' => 'carousel', 
             'columns' => [ 
                 [ 
-                    'title' => 'カルーセル1', 
-                    'text' => 'カルーセル1です',
+                    'title' => $message_text.'の観光サイト', 
+                    'text' => 'じゃらんの情報に移動します',
                      'actions' => [
                         [
                             'type' => 'postback', 
@@ -219,8 +219,8 @@ if($message_text == "福岡県"){
                     ] 
                 ],
                  [ 
-                        'title' => 'カルーセル2', 
-                        'text' => 'カルーセル2です', 
+                        'title' => $message_text.'のデートスポット', 
+                        'text' => 'じゃらんの情報に移動します',
                         'actions' => [ 
                             [
                                 'type' => 'postback', 
