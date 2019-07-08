@@ -194,9 +194,10 @@ if(!empty($areaID)){
     }
 }
 
+$site_ID = $site_data[$message_text];
+$date_ID = $date_data[$message_text];
 
-
-if($message_text == "福岡県の観光"){
+if(!empty($site_ID)){
     
     // カルーセルタイプ 
     $return_message_text = [ 
@@ -217,7 +218,7 @@ if($message_text == "福岡県の観光"){
                         [ 
                            'type' => 'uri', 
                            'label' => $message_text.'情報へ',
-                           'uri' => $site_data[$message_text]
+                           'uri' => $site_ID
                         ] 
                    ] 
                ]
@@ -225,7 +226,7 @@ if($message_text == "福岡県の観光"){
        ] 
   ];
   send_carousel($accessToken, $replyToken, $return_message_text );
-} elseif($message_text == "福岡県のデートスポット"){
+} elseif(!empty($date_ID)){
     
     // カルーセルタイプ 
     $return_message_text = [ 
@@ -246,7 +247,7 @@ if($message_text == "福岡県の観光"){
                         [ 
                            'type' => 'uri', 
                            'label' => $message_text.'情報へ',
-                           'uri' => $date_data[$message_text]
+                           'uri' => $date_ID
                         ] 
                    ] 
                ]
