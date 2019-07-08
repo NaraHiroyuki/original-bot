@@ -214,7 +214,7 @@ if($message_text == "福岡県の観光"){
                          [ 
                             'type' => 'uri', 
                             'label' => $message_text.'情報へ',
-                             'uri' => $site_date[$message_text]
+                            'uri' => $site_date[$message_text]
                          ] 
                     ] 
                 ],
@@ -241,7 +241,7 @@ if($message_text == "福岡県の観光"){
                         ], 
                         [ 
                             'type' => 'uri', 
-                            'label' => $message_text.'へ', 
+                            'label' => $message_text.'情報へ', 
                             'uri' => $date_data[$message_text]
                         ]
                    ] 
@@ -252,14 +252,14 @@ if($message_text == "福岡県の観光"){
  　　send_carousel($accessToken, $replyToken, $return_message_text );
 } else {
     //返信実行
-    sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
+    send_messages($accessToken, $replyToken, $message_type, $return_message_text);
 }
 
 ?>
 <?php
 
 //メッセージの送信
-function sending_messages($accessToken, $replyToken, $message_type, $return_message_text){
+function send_messages($accessToken, $replyToken, $message_type, $return_message_text){
     
     //レスポンスフォーマット
     $response_format_text = [
