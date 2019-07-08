@@ -216,7 +216,7 @@ if($message_text == "カルーセル"){
             ]
         ]
     ];
-    send_carousel($replyToken,$messageData);
+    send_carousel($replyToken,$messageData,$accessToken);
 } else {
     //返信実行
     sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
@@ -255,7 +255,7 @@ function sending_messages($accessToken, $replyToken, $message_type, $return_mess
 }
 
 //カルーセルの送信
-function send_carousel($replyToken,$messageData){
+function send_carousel($replyToken,$messageData,$accessToken ){
     
 $response = [ 'replyToken' => $replyToken, 'messages' => [$messageData] ]; 
 
@@ -267,7 +267,8 @@ curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($response)); 
 curl_setopt($ch, CURLOPT_HTTPHEADER, array( 'Content-Type: application/json; charser=UTF-8', 'Authorization: Bearer ' . $accessToken )); 
-$result = curl_exec($ch); error_log($result); 
+$result = curl_exec($ch); 
+error_log($result); 
 curl_close($ch);
 }
 ?>
