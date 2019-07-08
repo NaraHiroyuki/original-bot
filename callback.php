@@ -196,7 +196,7 @@ if(!empty($areaID)){
 if($message_text == "カルーセル"){
     
      // カルーセルタイプ 
-     $messageData = [ 
+     $return_message_text = [ 
         'type' => 'template', 
         'altText' => 'カルーセル', 
         'template' => [
@@ -237,7 +237,7 @@ if($message_text == "カルーセル"){
                 ] 
             ] 
     ];
-    send_carousel($accessToken, $replyToken, $messageData );
+    send_carousel($accessToken, $replyToken, $return_message_text );
 } else {
     //返信実行
     sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
@@ -276,9 +276,12 @@ function sending_messages($accessToken, $replyToken, $message_type, $return_mess
 }
 
 //カルーセルの送信
-function send_carousel($accessToken, $replyToken, $messageData ){
-     
-    $response = [ 'replyToken' => $replyToken, 'messages' => [$messageData] ]; 
+function send_carousel($accessToken, $replyToken, $return_message_text ){
+    
+    //ポストデータ
+    $response = [ 'replyToken' => $replyToken, 'messages' => [$return_message_text] ]; 
+    
+    //curl実行
     error_log(json_encode($response)); 
     $ch = curl_init('https://api.line.me/v2/bot/message/reply'); 
     curl_setopt($ch, CURLOPT_POST, true); 
