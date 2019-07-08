@@ -193,7 +193,7 @@ if(!empty($areaID)){
     }
 }
 
-if($message_text == "福岡県"){
+if($message_text == "福岡県の観光"){
     
      // カルーセルタイプ 
      $return_message_text = [ 
@@ -201,9 +201,9 @@ if($message_text == "福岡県"){
         'altText' => 'カルーセル', 
         'template' => [
              'type' => 'carousel', 
-            'columns' => [ 
+             'columns' => [ 
                 [ 
-                    'title' => $message_text.'の観光サイト', 
+                    'title' => $message_text.'情報', 
                     'text' => 'じゃらんの情報に移動します',
                      'actions' => [
                         [
@@ -213,31 +213,43 @@ if($message_text == "福岡県"){
                         ], 
                          [ 
                             'type' => 'uri', 
-                            'label' => $message_text.'の観光サイト',
-                             'uri' => $date[$message_text]
+                            'label' => $message_text.'情報へ',
+                             'uri' => $site_date[$message_text]
                          ] 
                     ] 
                 ],
-                 [ 
-                        'title' => $message_text.'のデートスポット', 
-                        'text' => 'じゃらんの情報に移動します',
-                        'actions' => [ 
-                            [
-                                'type' => 'postback', 
-                                'label' => 'webhookにpost送信', 
-                                'data' => 'value' 
-                            ], 
-                            [ 
-                                'type' => 'uri', 
-                                'label' => $message_text.'のデートスポット', 
-                                'uri' => 'https://haveagood.holiday/articles/414' 
-                            ] 
-                        ] 
-                    ], 
-                ] 
             ] 
+        ] 
     ];
     send_carousel($accessToken, $replyToken, $return_message_text );
+} elseif($message_text == "福岡県のデートスポット") {
+    // カルーセルタイプ 
+    $return_message_text = [ 
+        'type' => 'template', 
+        'altText' => 'カルーセル', 
+        'template' => [
+             'type' => 'carousel', 
+            'columns' => [ 
+                [ 
+                    'title' => $message_text.'のデートスポット情報', 
+                    'text' => 'じゃらんの情報に移動します',
+                    'actions' => [ 
+                        [
+                            'type' => 'postback', 
+                            'label' => 'webhookにpost送信', 
+                            'data' => 'value' 
+                        ], 
+                        [ 
+                            'type' => 'uri', 
+                            'label' => $message_text.'のデートスポットへ', 
+                            'uri' => $date_date[$message_text]
+                        ]
+                   ] 
+               ], 
+           ] 
+       ] 
+ ];
+ send_carousel($accessToken, $replyToken, $return_message_text );
 } else {
     //返信実行
     sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
