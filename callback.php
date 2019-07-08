@@ -1,7 +1,7 @@
 <?php
  $accessToken = 'Ak437zeTmxtWY3WLe6hMgOm++kaItQngv2RiKgwqPhb2B88FkStdcbMh55WhuRmf/hNTz+XlgyteKUfNhNl9PJQcxADRxqKd4laB+Tp9PR0s2vajpKF0ixE7eDx7sG+tdlnj+08JG0L5Pik94FVATAdB04t89/1O/w1cDnyilFU=';
 require_once("ID.php");
-
+require_once("date.php");
 //ユーザーからのメッセージ取得
 $json_string = file_get_contents('php://input');
 $json_object = json_decode($json_string);
@@ -193,7 +193,7 @@ if(!empty($areaID)){
     }
 }
 
-if($message_text == "カルーセル"){
+if($message_text == "福岡県"){
     
      // カルーセルタイプ 
      $return_message_text = [ 
@@ -213,8 +213,8 @@ if($message_text == "カルーセル"){
                         ], 
                          [ 
                             'type' => 'uri', 
-                            'label' => '福岡の観光サイト',
-                             'uri' => 'https://www.google.com/search?q=%E7%A6%8F%E5%B2%A1+%E8%A6%B3%E5%85%89&rlz=1C5CHFA_enJP839JP839&oq=%E7%A6%8F%E5%B2%A1%E3%80%80%E8%A6%B3%E5%85%89&aqs=chrome..69i57j35i39j0l4.6508j0j8&sourceid=chrome&ie=UTF-8'
+                            'label' => $message_text.'の観光サイト',
+                             'uri' => $date[$message_text]
                          ] 
                     ] 
                 ],
@@ -229,7 +229,7 @@ if($message_text == "カルーセル"){
                             ], 
                             [ 
                                 'type' => 'uri', 
-                                'label' => '福岡のデートスポット', 
+                                'label' => $message_text.'のデートスポット', 
                                 'uri' => 'https://haveagood.holiday/articles/414' 
                             ] 
                         ] 
