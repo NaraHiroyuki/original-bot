@@ -4,6 +4,6 @@ $site_date = [
 ];
 
 $date_data = [
-    "福岡のデートスポット" => "https://www.jalan.net/news/article/88710/",
+    "福岡県のデートスポット" => "https://www.jalan.net/news/article/88710/",
 ];
 ?>

@@ -220,7 +220,7 @@ if($message_text == "福岡県の観光"){
                 ],
             ] 
         ] 
-    ];
+   ];
     send_carousel($accessToken, $replyToken, $return_message_text );
 } elseif($message_text == "福岡県のデートスポット") {
     // カルーセルタイプ 
@@ -229,9 +229,9 @@ if($message_text == "福岡県の観光"){
         'altText' => 'カルーセル', 
         'template' => [
              'type' => 'carousel', 
-            'columns' => [ 
+             'columns' => [ 
                 [ 
-                    'title' => $message_text.'のデートスポット情報', 
+                    'title' => $message_text.'情報', 
                     'text' => 'じゃらんの情報に移動します',
                     'actions' => [ 
                         [
@@ -241,15 +241,15 @@ if($message_text == "福岡県の観光"){
                         ], 
                         [ 
                             'type' => 'uri', 
-                            'label' => $message_text.'のデートスポットへ', 
+                            'label' => $message_text.'へ', 
                             'uri' => $date_data[$message_text]
                         ]
                    ] 
                ], 
            ] 
        ] 
- ];
- send_carousel($accessToken, $replyToken, $return_message_text );
+    ];
+ 　　send_carousel($accessToken, $replyToken, $return_message_text );
 } else {
     //返信実行
     sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
