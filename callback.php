@@ -193,36 +193,7 @@ if(!empty($areaID)){
     }
 }
 
-if($message_text == "福岡県の観光"){
-    
-     // カルーセルタイプ 
-     $return_message_text = [ 
-        'type' => 'template', 
-        'altText' => 'カルーセル', 
-        'template' => [
-             'type' => 'carousel', 
-             'columns' => [ 
-                [ 
-                    'title' => $message_text.'情報', 
-                    'text' => 'じゃらんの情報に移動します',
-                     'actions' => [
-                        [
-                            'type' => 'postback', 
-                            'label' => 'webhookにpost送信', 
-                            'data' => 'value' 
-                        ], 
-                         [ 
-                            'type' => 'uri', 
-                            'label' => $message_text.'情報へ',
-                            'uri' => $site_data[$message_text]
-                         ] 
-                    ] 
-                ]
-            ] 
-        ] 
-   ];
-   send_carousel($accessToken, $replyToken, $return_message_text );
-} 
+
 if($message_text == "福岡県のデートスポット"){
     
     // カルーセルタイプ 
@@ -308,3 +279,33 @@ function send_carousel($accessToken, $replyToken, $return_message_text ){
 
 }
 ?>
+if($message_text == "福岡県の観光"){
+    
+    // カルーセルタイプ 
+    $return_message_text = [ 
+       'type' => 'template', 
+       'altText' => 'カルーセル', 
+       'template' => [
+            'type' => 'carousel', 
+            'columns' => [ 
+               [ 
+                   'title' => $message_text.'情報', 
+                   'text' => 'じゃらんの情報に移動します',
+                    'actions' => [
+                       [
+                           'type' => 'postback', 
+                           'label' => 'webhookにpost送信', 
+                           'data' => 'value' 
+                       ], 
+                        [ 
+                           'type' => 'uri', 
+                           'label' => $message_text.'情報へ',
+                           'uri' => $site_data[$message_text]
+                        ] 
+                   ] 
+               ]
+           ] 
+       ] 
+  ];
+  send_carousel($accessToken, $replyToken, $return_message_text );
+} 
