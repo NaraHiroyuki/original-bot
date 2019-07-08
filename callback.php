@@ -2,6 +2,7 @@
  $accessToken = 'Ak437zeTmxtWY3WLe6hMgOm++kaItQngv2RiKgwqPhb2B88FkStdcbMh55WhuRmf/hNTz+XlgyteKUfNhNl9PJQcxADRxqKd4laB+Tp9PR0s2vajpKF0ixE7eDx7sG+tdlnj+08JG0L5Pik94FVATAdB04t89/1O/w1cDnyilFU=';
 require_once("ID.php");
 require_once("date.php");
+require_once("site_date.php");
 //ユーザーからのメッセージ取得
 $json_string = file_get_contents('php://input');
 $json_object = json_decode($json_string);
@@ -243,7 +244,7 @@ if($message_text == "福岡県の観光"){
                         [ 
                            'type' => 'uri', 
                            'label' => $message_text.'情報へ',
-                           'uri' => $site_data[$message_text]
+                           'uri' => $date_data[$message_text]
                         ] 
                    ] 
                ]
