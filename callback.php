@@ -258,13 +258,10 @@ function sending_messages($accessToken, $replyToken, $message_type, $return_mess
 //カルーセルの送信
 function send_carousel($accessToken, $replyToken, $messageData ){
      
-    //レスポンスフォーマット
-    $response_format_text = $messageData;
-
     //ポストデータ
     $post_data = [
       "replyToken" => $replyToken,
-      "messages" => [$response_format_text]
+      "messages" => [$messageData]
     ];
 
     //curl実行
