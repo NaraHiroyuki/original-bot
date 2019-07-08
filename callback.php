@@ -259,7 +259,7 @@ function send_carousel($accessToken, $replyToken,$messageData, $return_message_t
      
 
     //レスポンスフォーマット
-    $response_format_text = [$messageData];
+    $response_format_text = [$return_message_text];
 
     //ポストデータ
     $post_data = [
