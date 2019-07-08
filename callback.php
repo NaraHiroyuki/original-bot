@@ -237,7 +237,7 @@ function sending_messages($accessToken, $replyToken, $message_type, $return_mess
     //ポストデータ
     $post_data = [
         "replyToken" => $replyToken,
-        "messages" => [$response_format_text]
+        "messages" => $response_format_text
     ];
  
     //curl実行
@@ -257,7 +257,7 @@ function sending_messages($accessToken, $replyToken, $message_type, $return_mess
 //カルーセルの送信
 function send_carousel($replyToken,$messageData,$accessToken ){
     
-$response = [ 'replyToken' => $replyToken, 'messages' => [$messageData] ]; 
+$response = [ 'replyToken' => $replyToken, 'messages' => $messageData ]; 
 
 
 error_log(json_encode($response)); 
