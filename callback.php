@@ -193,13 +193,11 @@ if(!empty($areaID)){
     }
 }
 
-$return_message_text ="";
-
 if($message_text == "カルーセル"){
- [
+    $messageData = [
      "type" => "template",
      "altText" => "カルーセル",
-     $return_message_text = [
+     "template" => [
         "type" => "carousel",
         "columns" => [
             "text" => "カルーセル",
@@ -219,7 +217,7 @@ if($message_text == "カルーセル"){
     ]
 ];
     
-    send_carousel($accessToken, $replyToken,$messageData, $return_message_text);
+    send_carousel($accessToken, $replyToken,$messageData);
 } else {
     //返信実行
     sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
@@ -258,15 +256,11 @@ function sending_messages($accessToken, $replyToken, $message_type, $return_mess
 }
 
 //カルーセルの送信
-function send_carousel($accessToken, $replyToken,$messageData, $return_message_text ){
+function send_carousel($accessToken, $replyToken,$messageData ){
      
 
     //レスポンスフォーマット
-    $response_format_text = [
-        "type" => "template",
-        "altText" => "カルーセル",
-        "template" => [$return_message_text]
-    ];
+    $response_format_text = [$messageData];
 
     //ポストデータ
     $post_data = [
