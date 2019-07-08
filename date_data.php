@@ -1,5 +1,33 @@
 <?php
 $date_data = [
+    "北海道のデートスポット" => "https://www.jalan.net/news/article/81213/",
+    "岩手県のデートスポット" => "https://www.jalan.net/news/article/85980/",
+    "宮城県のデートスポット" => "https://www.jalan.net/news/article/88419/",
+    "秋田県のデートスポット" => "https://www.jalan.net/news/article/88470/",
+    "福島県のデートスポット" => "https://www.jalan.net/news/article/90395/",
+    "群馬県のデートスポット" => "https://www.jalan.net/news/article/88618/",
+    "千葉県のデートスポット" => "https://www.jalan.net/news/article/90972/",
+    "東京都のデートスポット" => "https://www.jalan.net/news/article/81231/",
+    "神奈川県のデートスポット" => "https://www.jalan.net/news/article/81176/",
+    "新潟県のデートスポット" => "https://www.jalan.net/news/article/85991/",
+    "石川県のデートスポット" => "https://www.jalan.net/news/article/91007/",
+    "長野県のデートスポット" => "https://www.jalan.net/news/article/85986/",
+    "岐阜県のデートスポット" => "https://www.jalan.net/news/article/88669/",
+    "静岡県のデートスポット" => "https://www.jalan.net/news/article/88543/",
+    "愛知県のデートスポット" => "https://www.jalan.net/news/article/85997/",
+    "京都府のデートスポット" => "https://www.jalan.net/news/article/230738/",
+    "大阪府のデートスポット" => "https://www.jalan.net/news/article/81204/",
+    "奈良県のデートスポット" => "https://www.jalan.net/news/article/91506/",
+    "和歌山県のデートスポット" => "https://www.jalan.net/news/article/88675/",
+    "鳥取県のデートスポット" => "https://www.jalan.net/news/article/91026/",
+    "広島県のデートスポット" => "https://www.jalan.net/news/article/88563/",
+    "愛媛県のデートスポット" => "https://www.jalan.net/news/article/88568/",
+    "高知県のデートスポット" => "https://www.jalan.net/news/article/88705/",
     "福岡県のデートスポット" => "https://www.jalan.net/news/article/88710/",
+    "長崎県のデートスポット" => "https://www.jalan.net/news/article/88735/",
+    "熊本県のデートスポット" => "https://www.jalan.net/news/article/305198/2/",
+    "宮崎県のデートスポット" => "https://www.jalan.net/news/article/88583/",
+    "鹿児島県のデートスポット" => "https://www.jalan.net/news/article/88595/",
+    "沖縄県のデートスポット" => "https://www.jalan.net/news/article/81258/"
 ];
 ?>

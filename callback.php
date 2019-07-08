@@ -194,6 +194,8 @@ if(!empty($areaID)){
     }
 }
 
+
+
 if($message_text == "福岡県の観光"){
     
     // カルーセルタイプ 
