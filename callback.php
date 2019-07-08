@@ -218,6 +218,22 @@ if($message_text == "福岡県の観光"){
                          ] 
                     ] 
                 ],
+                [ 
+                    'title' => $message_text.'情報', 
+                    'text' => 'じゃらんの情報に移動します',
+                    'actions' => [ 
+                        [
+                            'type' => 'postback', 
+                            'label' => 'webhookにpost送信', 
+                            'data' => 'value' 
+                        ], 
+                        [ 
+                            'type' => 'uri', 
+                            'label' => $message_text.'情報へ', 
+                            'uri' => $date_data[$message_text]
+                        ]
+                   ] 
+               ]
             ] 
         ] 
    ];
@@ -246,7 +262,7 @@ if($message_text == "福岡県の観光"){
                             'uri' => $date_data[$message_text]
                         ]
                    ] 
-               ], 
+               ] 
            ] 
        ] 
     ];
