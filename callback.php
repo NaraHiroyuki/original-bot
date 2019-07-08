@@ -196,7 +196,7 @@ if(!empty($areaID)){
 if($message_text == "カルーセル"){
     
      // カルーセルタイプ 
-     $return_message_text = [ 
+     $messageData = [ 
         'type' => 'template', 
         'altText' => 'カルーセル', 
         'template' => [
