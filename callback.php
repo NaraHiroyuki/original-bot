@@ -242,7 +242,7 @@ if($message_text == "福岡県の観光"){
                         [ 
                             'type' => 'uri', 
                             'label' => $message_text.'のデートスポットへ', 
-                            'uri' => $date_date[$message_text]
+                            'uri' => $date_data[$message_text]
                         ]
                    ] 
                ], 
