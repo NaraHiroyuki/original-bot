@@ -194,28 +194,49 @@ if(!empty($areaID)){
 }
 
 if($message_text == "カルーセル"){
-    $messageData = [
-     "type" => "template",
-     "altText" => "カルーセル",
-     "template" => [
-        "type" => "carousel",
-        "columns" => [
-            "text" => "カルーセル",
-            "title" => "カルーセル",
-            "action" =>  
-            [
-                'type' => 'postback', 
-                'label' => 'webhookにpost送信', 
-                'data' => 'value' 
-            ], 
-            [
-                "type" => "uri",
-                "label" => "福岡の情報",
-                "uri" => "https://www.google.com/search?q=%E7%A6%8F%E5%B2%A1+%E8%A6%B3%E5%85%89&rlz=1C5CHFA_enJP839JP839&oq=%E7%A6%8F%E5%B2%A1%E3%80%80%E8%A6%B3%E5%85%89&aqs=chrome..69i57j35i39j0l4.6508j0j8&sourceid=chrome&ie=UTF-8"
-            ]
-        ]
-    ]
-];
+    
+     // カルーセルタイプ 
+     $messageData = [ 
+        'type' => 'template', 
+        'altText' => 'カルーセル', 
+        'template' => [
+             'type' => 'carousel', 
+            'columns' => [ 
+                [ 
+                    'title' => 'カルーセル1', 
+                    'text' => 'カルーセル1です',
+                     'actions' => [
+                        [
+                            'type' => 'postback', 
+                            'label' => 'webhookにpost送信', 
+                            'data' => 'value' 
+                        ], 
+                         [ 
+                            'type' => 'uri', 
+                            'label' => '福岡の観光サイト',
+                             'uri' => 'https://www.google.com/search?q=%E7%A6%8F%E5%B2%A1+%E8%A6%B3%E5%85%89&rlz=1C5CHFA_enJP839JP839&oq=%E7%A6%8F%E5%B2%A1%E3%80%80%E8%A6%B3%E5%85%89&aqs=chrome..69i57j35i39j0l4.6508j0j8&sourceid=chrome&ie=UTF-8'
+                         ] 
+                    ] 
+                ],
+                 [ 
+                        'title' => 'カルーセル2', 
+                        'text' => 'カルーセル2です', 
+                        'actions' => [ 
+                            [
+                                'type' => 'postback', 
+                                'label' => 'webhookにpost送信', 
+                                'data' => 'value' 
+                            ], 
+                            [ 
+                                'type' => 'uri', 
+                                'label' => '福岡のデートスポット', 
+                                'uri' => 'https://haveagood.holiday/articles/414' 
+                            ] 
+                        ] 
+                    ], 
+                ] 
+            ] 
+    ];
     
 $response = [ 'replyToken' => $replyToken, 'messages' => [$messageData] ]; 
 error_log(json_encode($response)); 
