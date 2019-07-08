@@ -217,7 +217,7 @@ if($message_text == "カルーセル"){
      ]
     ];
     
-    send_carousel($accessToken, $replyToken,$messageData, $return_message_text);
+    send_carousel($accessToken, $replyToken,$messageData, [$return_message_text]);
 } else {
     //返信実行
     sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
@@ -263,7 +263,7 @@ function send_carousel($accessToken, $replyToken,$messageData, $return_message_t
     $response_format_text = [
         "type" => "template",
         "altText" => "カルーセル",
-        "template" => $return_message_text
+        "template" => [$return_message_text]
     ];
 
     //ポストデータ
