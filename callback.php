@@ -210,12 +210,11 @@ if(!empty($site_ID)){
                    'title' => $message_text.'情報', 
                    'text' => 'じゃらんの情報に移動します',
                     'actions' => [
-                       
-                        [ 
+                       [ 
                            'type' => 'uri', 
                            'label' => $message_text.'情報へ',
                            'uri' => $site_ID
-                        ] 
+                       ] 
                    ] 
                ]
            ] 
@@ -235,11 +234,6 @@ if(!empty($site_ID)){
                    'title' => $message_text.'情報', 
                    'text' => 'じゃらんの情報に移動します',
                     'actions' => [
-                       [
-                           'type' => 'postback', 
-                           'label' => 'webhookにpost送信', 
-                           'data' => 'value' 
-                       ], 
                         [ 
                            'type' => 'uri', 
                            'label' => $message_text.'情報へ',
