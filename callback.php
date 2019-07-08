@@ -216,7 +216,7 @@ if($message_text == "カルーセル"){
             ]
         ]
     ];
-    send_carousel($accessToken, $replyToken,$return_message_text);
+    send_carousel($replyToken,$messageData);
 } else {
     //返信実行
     sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
