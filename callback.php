@@ -223,8 +223,8 @@ if($message_text == "福岡県の観光"){
    ];
     send_carousel($accessToken, $replyToken, $return_message_text );
 } elseif($message_text == "福岡県のデートスポット") {
-    // カルーセルタイプ 
-    $return_message_text = [ 
+     // カルーセルタイプ 
+     $return_message_text = [ 
         'type' => 'template', 
         'altText' => 'カルーセル', 
         'template' => [
