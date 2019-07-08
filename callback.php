@@ -194,8 +194,8 @@ if(!empty($areaID)){
 }
 
 if($message_text == "カルーセル"){
-    $message_type = "template";
-    $return_message_text = [
+    $messageData = [
+        "type" => "template",
         "altText" => "カルーセル",
         "template" => [
             "type" => "carousel",
@@ -255,32 +255,19 @@ function sending_messages($accessToken, $replyToken, $message_type, $return_mess
 }
 
 //カルーセルの送信
-function send_carousel($accessToken, $replyToken,$return_message_text){
+function send_carousel($replyToken,$messageData){
     
-    //レスポンスフォーマット
-    $response_format_text = [
-        "type" => "carousel",
-        "columns" => $return_message_text
-    ];
+$response = [ 'replyToken' => $replyToken, 'messages' => [$messageData] ]; 
 
-     //ポストデータ
-     $post_data = [
-        "replyToken" => $replyToken,
-        "messages" => [$response_format_text]
-    ];
- 
-    
-    //curl実行
-    $ch = curl_init("https://api.line.me/v2/bot/message/reply");
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post_data));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'Content-Type: application/json; charser=UTF-8',
-        'Authorization: Bearer ' . $accessToken
-    ));
-    $result = curl_exec($ch);
-    curl_close($ch);
+
+error_log(json_encode($response)); 
+$ch = curl_init('https://api.line.me/v2/bot/message/reply'); 
+curl_setopt($ch, CURLOPT_POST, true); 
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST'); 
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($response)); 
+curl_setopt($ch, CURLOPT_HTTPHEADER, array( 'Content-Type: application/json; charser=UTF-8', 'Authorization: Bearer ' . $accessToken )); 
+$result = curl_exec($ch); error_log($result); 
+curl_close($ch);
 }
 ?>
